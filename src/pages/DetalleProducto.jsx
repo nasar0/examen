@@ -11,7 +11,7 @@ const DetalleProducto = ({id}) => {
   console.log(productos)
   return (
     <>
-      <div className='absolute z-1 right-10 w-[20%] border p-5'>
+      <div className=' fixed right-10 w-[20%] border p-5'>
         <h2>Details</h2>
         <img src={productos.images} alt="" />
         <p>{productos.price}</p>

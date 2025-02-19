@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DetalleProducto from '../pages/DetalleProducto'
 const Cards = ({productos}) => {
     const [id, setId] = useState("")
     const obtenerId =(id)=>{
         setId(id)
     }
+    useEffect(() => {
+        setId(""); 
+    }, [productos]);
   return (
     
     <>

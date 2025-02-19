@@ -10,6 +10,9 @@ const Productos = () => {
   const buscar = (text)=>{
     setText(text)
   }
+  useEffect(() => {
+    setText(""); 
+  }, [categoria]);
   useEffect(()=>{
       fetch(api).
       then(resp => resp.json()).
@@ -18,22 +21,17 @@ const Productos = () => {
           (producto) => producto.category.name === categoria
       );
 
-      // Filtra los productos por título (búsqueda insensible a mayúsculas y minúsculas)
       const productosFiltrados = productosFiltradosPorCategoria.filter(
           (producto) =>
               producto.title.toLowerCase().includes(text.toLowerCase())
       );
 
-      setProductos(productosFiltrados);
-      });
+      setProductos(productosFiltrados);});
   },[categoria,text])
   return (
     <>
-    <input
-        type="text"
-        placeholder="Buscar productos..."
-        onChange={(e) => setText(e.target.value)} // Actualiza el estado `text`
-    />
+    <input type="search" placeholder='Buscar....'  value={text}  className='w-[25%] p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 m-auto w-[25%] flex justify-center mb-5' onChange={(e)=>{buscar(e.target.value)}}/>
+
     <div className='grid grid-cols-4 gap-5 w-[40%] m-auto'>
         <Cards productos={productos} />
     </div>
